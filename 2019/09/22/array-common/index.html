@@ -14,7 +14,7 @@
   <meta name="description" content="这里包含了前端、算法、mySql、Linux等知识点">
   <meta name="author" content="liubingxue">
   <meta name="keywords" content="JS,前端,算法,mySql">
-  <title>标签 ~ helloOldTime个人博客</title>
+  <title>两个数组的交集 你能想出多少种方法 ~ helloOldTime个人博客</title>
   <link rel="stylesheet" href="/lbx/lib/font-awesome/css/all.min.css?v=5.7.2">
   <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
   <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
@@ -31,7 +31,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -80,13 +80,16 @@
 
 </nav>
     <div class="view intro-2"
-         style="background: url('/lbx/img/archive.jpg')no-repeat center center;background-size: cover;">
+         style="background: url('/img/post.jpg')no-repeat center center;background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text wow fadeInUp">
                     <span class="h2" id="subtitle">
                       
                     </span>
+            
+              <br>
+              <p>星期日, 九月 22日 2019, 2:19 下午</p>
             
           </div>
         </div>
@@ -96,22 +99,107 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3 board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/lbx/tags/js/" style="font-size: 15px; color: #bbe">js</a> <a href="/lbx/tags/算法/" style="font-size: 15px; color: #bbe">算法</a>
-</div>
-              </div>
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <img src="/lbx/2019/09/22/array-common/array-common.jpeg" title="This is an example image">
+
+<p>看到标题可能最先想到的方法就是for循环了，没错for循环是一种方法。</p>
+<pre><code>var intersection = function (nums1, nums2) {
+      var arr = [];
+   for (var i = 0; i&lt; nums1.length;i++){
+           if(nums2.indexOf(nums1[i]) &gt; -1 &amp;&amp; arr.indexOf(nums1[i]) === -1){
+                arr.push(nums1[i]);
+        }
+​    }
+      return arr;
+    };
+</code></pre><p>除了for循环还有别的方法吗？当然有，下面让我们一起来探索吧～</p>
+<p>利用while循环</p>
+<pre><code> var intersection = function (nums1, nums2) {
+   var i = 0;
+        var arr = [];
+        while(i&lt; nums1.length){
+            if(nums2.indexOf(nums1[i]) &gt; -1 &amp;&amp; arr.indexOf(nums1[i]) === -1){
+                arr.push(nums1[i])
+            }
+             i++;
+        }  
+        return arr;
+    };
+</code></pre><p>利用new Set()将数组转化为对象</p>
+<pre><code>var intersection = function(nums1, nums2) {
+    var hash1 = new Set(nums1);
+    var hash2 = new Set(nums2); // 去重、转化成{value, value1}的形式 如：new Set([1,2,1]) ---&gt; {1,2}
+    var res=[];
+    for(var i of hash1){
+        if(hash2.has(i)){
+            res.push(i);
+        }
+    }
+    return res;
+};</code></pre><p>利用filter查找</p>
+<pre><code>var intersection = function(nums1, nums2) {
+    var hash1 = new Set(nums1);
+    return nums2.filter(function(num,index,self){
+           // indexOf 会返回在数组中找到符合的第一个元素的位置，因此会过滤重复元素
+            return hash1.has(num)&amp;&amp;(self.indexOf(num)==index);
+        });
+};
+</code></pre><p>同理可</p>
+<pre><code>var intersection = function(nums1, nums2) {
+    //数组交集
+    let intersect = nums1.filter(x =&gt; nums2.includes(x));
+    //数组去重
+    return [... new Set(intersect)];
+};
+</code></pre><p>以上便是我整理的关于求两数组的交集的方法，大家有什么意见可以提出来</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95">算法</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -157,6 +245,11 @@
 <script src="/lbx/lib/nprogress/nprogress.min.js?v=0.2.0"></script>
 <script src="/lbx/js/main.js"></script>
 
+  
+    <script src="/lbx/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
+  
+  <script src="/lbx/js/post.js"></script>
+
 
   <script src="/lbx/lib/prettify/prettify.min.js?v=0.1.0"></script>
   <script>
@@ -172,7 +265,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "两个数组的交集 你能想出多少种方法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -4,39 +4,38 @@
   
   
   <entry>
+    <title>两个数组的交集 你能想出多少种方法</title>
+    <link href="/lbx2019/09/22/array-common/"/>
+    <url>2019/09/22/array-common/</url>
+    
+    <content type="html"><![CDATA[<img src="/lbx/2019/09/22/array-common/array-common.jpeg" title="This is an example image"><p>看到标题可能最先想到的方法就是for循环了，没错for循环是一种方法。</p><pre><code>var intersection = function (nums1, nums2) {      var arr = [];   for (var i = 0; i&lt; nums1.length;i++){           if(nums2.indexOf(nums1[i]) &gt; -1 &amp;&amp; arr.indexOf(nums1[i]) === -1){                arr.push(nums1[i]);        }​    }      return arr;    };</code></pre><p>除了for循环还有别的方法吗？当然有，下面让我们一起来探索吧～</p><p>利用while循环</p><pre><code> var intersection = function (nums1, nums2) {   var i = 0;        var arr = [];        while(i&lt; nums1.length){            if(nums2.indexOf(nums1[i]) &gt; -1 &amp;&amp; arr.indexOf(nums1[i]) === -1){                arr.push(nums1[i])            }             i++;        }          return arr;    };</code></pre><p>利用new Set()将数组转化为对象</p><pre><code>var intersection = function(nums1, nums2) {    var hash1 = new Set(nums1);    var hash2 = new Set(nums2); // 去重、转化成{value, value1}的形式 如：new Set([1,2,1]) ---&gt; {1,2}    var res=[];    for(var i of hash1){        if(hash2.has(i)){            res.push(i);        }    }    return res;};</code></pre><p>利用filter查找</p><pre><code>var intersection = function(nums1, nums2) {    var hash1 = new Set(nums1);    return nums2.filter(function(num,index,self){           // indexOf 会返回在数组中找到符合的第一个元素的位置，因此会过滤重复元素            return hash1.has(num)&amp;&amp;(self.indexOf(num)==index);        });};</code></pre><p>同理可</p><pre><code>var intersection = function(nums1, nums2) {    //数组交集    let intersect = nums1.filter(x =&gt; nums2.includes(x));    //数组去重    return [... new Set(intersect)];};</code></pre><p>以上便是我整理的关于求两数组的交集的方法，大家有什么意见可以提出来</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JS神奇的类型转换</title>
     <link href="/lbx2019/09/22/jsType/"/>
     <url>2019/09/22/jsType/</url>
     
-    <content type="html"><![CDATA[<p><img src="/lbx//hellooldtime.github.io/lbx/2019/09/22/jsType/jsType.jpeg" alt="jsType"></p>]]></content>
+    <content type="html"><![CDATA[<img src="/lbx/2019/09/22/jsType/jsType.jpeg" title="This is an example image"><p>​众所周知JS是弱类型语言，弱类型语言的最大特点是允许隐式类型转换，即源码中没有明显的类型转换代码，也就是说你可以为一个变量赋值为字符串、也可以赋值为数值，也可以让不同类型的变量进行相加。语言的解析器会自动（隐式）转换。</p><p>隐式转换规则<br>1、转成string类型： +  （字符串连接符）</p><p>2、转成Number类型：++/–  （自增自减运算符） +-*/%（算术运算符）&gt; 、&lt; 、&gt;=、&lt;=、==、!=、===、!== (关系运算符)</p><p>3、转成boolean类型：！（逻辑运算符）</p><p>但是在实际应用中，我们总是会分不清 + 是作为字符串连接还是算术运算符。让我们看一下下面的列子,你觉得它会返回什么？</p><pre><code>console.log( 1 + &#39;true&#39;)  console.log( 1 + true )console.log( 1 + undefined )console.log( 1 + null )</code></pre><p>正确答案是：<br><code>1true2NaN1</code></p><p>让我们分析一下,首先要理解+什么时候作为字符串连接符什么时候为算术运算符，以及其作用。</p><p>字符串连接符（+ : 只要+号的两边有一边是字符串）<br>算术运算符 （ 两边都为数字 ）<br>1、字符型连接符+ ：会把其他数据类型调用string()方法转成字符串然后进行拼接。<br>2、算术运算符 + ：会把其他数据类型调用number（）方法转成数字然后再做加法运算</p><pre><code>1+ &quot;true&quot; ----&gt; String(1) + &quot;true&quot; ---&gt; 1true1+true -----&gt; 1+ Number(true) ----&gt; 1+ 1 -----&gt; 21+undefined ----&gt; 1+ Number(undefined)----&gt; 1 + NaN ---&gt; NaN1+null -----&gt; 1+ Number(null) -----&gt; 1+ 0----&gt; 1</code></pre><p>关系运算符：把其他数据类型转成Number之后再进行比较</p><pre><code>console.log( &#39;2&#39; &gt; 10 )结果为false  &#39;2&#39; &gt; 10----&gt; Number(2) &gt; 10 ----&gt; trueconsole.log( &#39;2&#39; &gt; &#39;10&#39; )</code></pre><p>结果为true,当关系运算符两边都是字符串的时候，同时转为number然后比较，但是此时比较的并不是按照number（）转成的数字，而是按照字符串对应的unicode编码来转成数字。可以通过 str.charCodeAt() 来获取unicode  </p><pre><code>&#39;2&#39;.charCodeAt()----&gt;50&#39;10&#39;.charCodeAt()----&gt;49console.log( &#39;abc&#39; &gt; &#39;b&#39; )</code></pre><p>同理比较的也是unicode编码</p><pre><code>&#39;a&#39;.charCodeAt()----&gt;97&#39;b&#39;.charCodeAt()----&gt;98</code></pre><p>特殊情况：</p><pre><code>console.log( NaN == NaN  ) ----&gt; falseconsole.log(undefined == null)  -----&gt; true</code></pre><p>复杂数据类型在隐式转换时会先转成string,然后再转成number运算</p><p>一个常见的面试题：</p><pre><code> var a = ？？？    if(a == 1 &amp;&amp; a == 2 &amp;&amp; a ==3 ){            console.log(1)    }</code></pre><p>我们可以利用复杂数据类型，调用valueOf()然后转成number,对象的valuueOf（）方法也是可以重写的。</p><pre><code> var a = {        i :0,        valusOf: function(){            return ++a.i   // 没调用一次就让a的i属性自增一次并返回       }   }</code></pre><p>逻辑非隐式转换与关系运算符隐式转换</p><pre><code>console.log ([] == 0 )结果为true, [] ----&gt; [].valueOf().toString() ---&gt; &#39;&#39; == 0 ----&gt; Number(&#39;&#39;) == 0;</code></pre><p>那 ![] == 0的结果应该为true,还是false呢</p><p>答案是true。</p><p>要想理解，我们要先弄明白非（!）运算符</p><p>*逻辑非：将其他数据使用Boolean()转成布尔类型 </p><p>只有以下八种情况转换为Boolean会得到false,除此之外都为true </p><pre><code>0、-0、NaN、undefined、null、空字符串、false、document all()</code></pre><p>我们再来看两个列子： </p><pre><code> console.log( [] == [] );// false  原因：引用类型数据存在堆中，栈中存储的是地址，所以为falseconsole.log( ![] == [] )[].valueOf().toString() ---&gt; &#39;&#39;![] -----&gt; false Number(&#39;&#39;) ==Number(false) ---&gt; true</code></pre>]]></content>
     
     
     
-  </entry>
-  
-  
-  
-  <entry>
-    <title>My Gallery</title>
-    <link href="/lbx2019/09/21/My-Gallery/"/>
-    <url>2019/09/21/My-Gallery/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>title</title>
-    <link href="/lbx2019/09/21/title/"/>
-    <url>2019/09/21/title/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
+    <tags>
+      
+      <tag>js</tag>
+      
+    </tags>
     
   </entry>
   
