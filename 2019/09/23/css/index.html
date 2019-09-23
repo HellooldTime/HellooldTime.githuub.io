@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/lbx/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/lbx/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="这里包含了前端、算法、mySql、Linux等知识点">
+  <meta name="author" content="liubingxue">
+  <meta name="keywords" content="JS,前端,算法,mySql">
+  <title>你应该知道的CSS技巧 ~ helloOldTime个人博客</title>
+  <link rel="stylesheet" href="/lbx/lib/font-awesome/css/all.min.css?v=5.7.2">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+  <link rel="stylesheet" href="/lbx/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="/lbx/lib/nprogress/nprogress.css?v=0.2.0">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lbx/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/lbx/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/lbx/">&nbsp;<strong>helloOldTime个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/">Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/archives/">Archives</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/categories/">Categories</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/tags/">Tags</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/lbx/img/post.jpg')no-repeat center center;background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                      
+                    </span>
+            
+              <br>
+              <p>星期一, 九月 23日 2019, 4:40 下午</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <p>作为前端，在工作中难免会遇到关于排版的问题，以下是我整理的一些关于CSS的技巧，希望对你能有帮助。</p>
+<h3 id="1、每个单词的首字母大写"><a href="#1、每个单词的首字母大写" class="headerlink" title="1、每个单词的首字母大写"></a>1、每个单词的首字母大写</h3><p>   一般我们会用JS实现，其实CSS就可以实现。<br>      JS代码：</p>
+<pre><code>    var str = &#39;hello world&#39;;
+
+    str.replace(/( |^)[a-z]/g,(L)=&gt;L.toUpperCase()
+
+    Heool World</code></pre><p>   css实现:</p>
+<pre><code>    text-transform：capitalize; （ 文本中每个单词以大写字母开头）
+
+    text-transform的属性值有：
+                        uppercase （全部大写）
+                        lowercase  (全部小写)
+                        capitalize  (首字母大写)
+                        none        (默认)</code></pre><h3 id="2、元素选中高亮"><a href="#2、元素选中高亮" class="headerlink" title="2、元素选中高亮"></a>2、元素选中高亮</h3><pre><code>    如input元素:
+
+    input:checked + .check {
+        color:red;
+    }</code></pre><h3 id="3、相邻元素添加边框"><a href="#3、相邻元素添加边框" class="headerlink" title="3、相邻元素添加边框"></a>3、相邻元素添加边框</h3><p>   有时候我们给元素设置border-bottom的时候,并不想给最后一个元素设置</p>
+<pre><code>    li+li {
+        border-bottom: 1px solid red;
+    }</code></pre><h3 id="4、多列等高"><a href="#4、多列等高" class="headerlink" title="4、多列等高"></a>4、多列等高</h3><pre><code>    display:table;</code></pre><h3 id="5、清除浮动的影响"><a href="#5、清除浮动的影响" class="headerlink" title="5、清除浮动的影响"></a>5、清除浮动的影响</h3><pre><code>    display:flow-root;</code></pre><h3 id="6、input的size属性"><a href="#6、input的size属性" class="headerlink" title="6、input的size属性"></a>6、input的size属性</h3><pre><code>    在input的type类型为text/password时，size的属性值代表input可容纳的字符的个数，除此之外size 属性会告诉用户端其初始宽度，宽度以 ‘px’ 的形式给出</code></pre><h3 id="7、position的粘粘属性"><a href="#7、position的粘粘属性" class="headerlink" title="7、position的粘粘属性"></a>7、position的粘粘属性</h3><p>   position的属性大家常见的应该就是absolute、fixed、static<br>   为大家介绍一个新的属性 sticky</p>
+<pre><code>    position:sticky; 设置sticky的同时给元素一个（top,botton,left,right）即可使用
+    使用条件：
+        1、父元素不能overflow:hidden 或者 overflow:auto
+        2、必须指定 top、bottom、left、right
+        3、父元素的高度不能低于sticky元素的搞丢
+        4、sticky元素仅在其父元素内生效</code></pre><h3 id="8、快速重置表单元素"><a href="#8、快速重置表单元素" class="headerlink" title="8、快速重置表单元素"></a>8、快速重置表单元素</h3><p>   原始的button按钮要重置挺麻烦的，要设置好几个属性</p>
+<pre><code>    button {
+        background: none;
+          border: none;
+          color: inherit;
+          font: inherit;
+          outline: none;
+          padding: 0;
+    }
+其实值需要设置
+    button {
+        all:unset;
+    }</code></pre><h3 id="9、文本省略号显示"><a href="#9、文本省略号显示" class="headerlink" title="9、文本省略号显示"></a>9、文本省略号显示</h3><p>   文本省略号，相信大家都很常用 </p>
+<pre><code>    这是不折行的情况
+    div {
+      white-space:nowrap;/* 规定文本是否折行 */
+      overflow: hidden;/* 规定超出内容宽度的元素隐藏 */
+      text-overflow: ellipsis;
+      /* 规定超出的内容文本省略号显示，通常跟上面的属性连用，因为没有上面的属性不会触发超出规定的内容 */
+    }   
+
+    折行
+     div {
+       overflow: hidden;
+       text-overflow: ellipsis;
+       display: -webkit-box; /* 将对象作为弹性伸缩盒子模型显示 */
+       -webkit-line-clamp: 4; /* 控制最多显示几行 */
+       -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+     }    </code></pre><h3 id="10、设置文本两端对齐"><a href="#10、设置文本两端对齐" class="headerlink" title="10、设置文本两端对齐"></a>10、设置文本两端对齐</h3><pre><code>    div {
+        width: 100px;
+        padding: 0 10px;
+        background: pink;
+        margin-bottom: 10px;
+        text-align-last:justify; /* 关键属性 */
+    }  </code></pre><h3 id="11、给元素添加行高"><a href="#11、给元素添加行高" class="headerlink" title="11、给元素添加行高"></a>11、给元素添加行高</h3><p>   当给元素添加行高我们需要分别添加到每一个元素上p、h,但是其实我们直接添加到body上就可以了</p>
+<pre><code>     body {
+        line-height:1;  
+    }</code></pre><h3 id="12、-css首字放大"><a href="#12、-css首字放大" class="headerlink" title="12、 css首字放大"></a>12、 css首字放大</h3><pre><code>p:first-letter{
+    display:block;
+    float:left;
+    margin: 5px 5px 0 0;  
+    color:red;
+    font-size:1.4rem;
+    background:#ddd;
+}    </code></pre><h3 id="13、移除被点击链接的点框"><a href="#13、移除被点击链接的点框" class="headerlink" title="13、移除被点击链接的点框"></a>13、移除被点击链接的点框</h3><pre><code>a{
+    outline:none 或者  outline:0
+}</code></pre><h3 id="14、计算属性值"><a href="#14、计算属性值" class="headerlink" title="14、计算属性值"></a>14、计算属性值</h3><pre><code>div {
+    width:calc(100%-100px) 让宽度为100%的减去100px   
+ }</code></pre><h3 id="15、内容可编辑"><a href="#15、内容可编辑" class="headerlink" title="15、内容可编辑"></a>15、内容可编辑</h3><pre><code>&lt;ul contenteditable=&quot;true&quot;&gt;
+
+&lt;li&gt;11111111 &lt;/li&gt;
+
+&lt;li&gt;2222222&lt;/li&gt;
+
+&lt;li&gt;3333333&lt;/li&gt;
+
+&lt;/ul&gt;</code></pre><h3 id="16、隐藏文本的两种方法"><a href="#16、隐藏文本的两种方法" class="headerlink" title="16、隐藏文本的两种方法"></a>16、隐藏文本的两种方法</h3><pre><code>p{
+    font-size:0;
+} 
+
+p{
+        text-indent:-1000;
+} </code></pre><h3 id="17、图片在指定尺寸后，如何保持比例"><a href="#17、图片在指定尺寸后，如何保持比例" class="headerlink" title="17、图片在指定尺寸后，如何保持比例"></a>17、图片在指定尺寸后，如何保持比例</h3><pre><code>img {
+    object-fit:cover; 或者 contain
+}</code></pre><h3 id="18、背景虚化"><a href="#18、背景虚化" class="headerlink" title="18、背景虚化"></a>18、背景虚化</h3><pre><code>div {
+    filter:blur(2px)
+}</code></pre><h3 id="19、设置宽度"><a href="#19、设置宽度" class="headerlink" title="19、设置宽度"></a>19、设置宽度</h3><pre><code>div {
+    width:fill-available; // 等同于block
+} 
+
+div {
+        width:fill-content; // 等同于inline-block
+} </code></pre><h3 id="20、link状态设置顺序"><a href="#20、link状态设置顺序" class="headerlink" title="20、link状态设置顺序"></a>20、link状态设置顺序</h3><pre><code>link的四种状态，需要按照下面的前后顺序来设置
+a:link a:visited a:hover a:active</code></pre><h3 id="21、font-size基准"><a href="#21、font-size基准" class="headerlink" title="21、font-size基准"></a>21、font-size基准</h3><p>  浏览器的缺省字体大小是16px，你可以先将基准字体大小设为10px：</p>
+<pre><code>body {font-size:62.5%;}</code></pre><p>  后面统一采用em作为字体单位，2.4em就表示24px。</p>
+<pre><code>h1 {font-size: 2.4 em}</code></pre><h3 id="22、用图片充当标志"><a href="#22、用图片充当标志" class="headerlink" title="22、用图片充当标志"></a>22、用图片充当标志</h3><p>  默认情况下，浏览器会用黑圈来充当列表标志，你可以用图片代替</p>
+<pre><code>ul li {
+    background-image: url(&quot;path-to-your-image&quot;); 
+    background-repeat: none;
+     background-position: 0 0.5em; 
+}</code></pre><h3 id="23、取消IE的文本滚动"><a href="#23、取消IE的文本滚动" class="headerlink" title="23、取消IE的文本滚动"></a>23、取消IE的文本滚动</h3><pre><code>textarea { overflow: auto; }</code></pre><h3 id="24、-黑白图像"><a href="#24、-黑白图像" class="headerlink" title="24、 黑白图像"></a>24、 黑白图像</h3><p>  这会让你的彩色照片变成黑白的图像</p>
+<pre><code>img.desaturate { 
+    filter: grayscale(100%); 
+     -webkit-filter: grayscale(100%);
+     -moz-filter: grayscale(100%); 
+     -ms-filter: grayscale(100%); 
+     -o-filter: grayscale(100%);
+ }  </code></pre><h3 id="25、使用not取消样式"><a href="#25、使用not取消样式" class="headerlink" title="25、使用not取消样式"></a>25、使用not取消样式</h3><p>   一般我们给元素添加样式会先给所以的都添加，然后再取消我们不想要的哪个元素样式</p>
+<pre><code>/* add border */.nav li { border-right: 1px solid #666;}
+
+/* remove border */.nav li:last-child { border-right: none;}</code></pre><p>   可以直接使用:not() 伪类实现</p>
+<pre><code>.nav li:not(:last-child) { border-right: 1px solid #666;}</code></pre><h3 id="26、禁用鼠标点击"><a href="#26、禁用鼠标点击" class="headerlink" title="26、禁用鼠标点击"></a>26、禁用鼠标点击</h3><pre><code>css3属性，当一个元素设置之后将无法点击 
+   .disabled { pointer-events: none; }</code></pre><h3 id="27、模糊文本"><a href="#27、模糊文本" class="headerlink" title="27、模糊文本"></a>27、模糊文本</h3><pre><code>.blur { 
+    color: transparent; 
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}</code></pre><h3 id="28、禁止用户选中文本"><a href="#28、禁止用户选中文本" class="headerlink" title="28、禁止用户选中文本"></a>28、禁止用户选中文本</h3><pre><code>div {user-select: none; /* Standard syntax */}</code></pre>
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/css">css</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lbx/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/popper.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+<script src="/lbx/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+<script src="/lbx/lib/nprogress/nprogress.min.js?v=0.2.0"></script>
+<script src="/lbx/js/main.js"></script>
+
+  
+    <script src="/lbx/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
+  
+  <script src="/lbx/js/post.js"></script>
+
+
+  <script src="/lbx/lib/prettify/prettify.min.js?v=0.1.0"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lbx/lib/typed/typed.min.js?v=2.0.9"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "你应该知道的CSS技巧&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lbx/lib/anchor/anchor.min.js?v=4.2.0"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/lbx/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+</body>
+</html>
