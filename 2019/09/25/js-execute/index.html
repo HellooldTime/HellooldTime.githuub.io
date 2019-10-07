@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/lbx/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/lbx/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="这里包含了前端、算法、mySql、Linux等知识点">
+  <meta name="author" content="liubingxue">
+  <meta name="keywords" content="JS,前端,算法,mySql">
+  <title>你真的了解javaScript的执行机制吗？ ~ helloOldTime个人博客</title>
+  <link rel="stylesheet" href="/lbx/lib/font-awesome/css/all.min.css?v=5.7.2">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+  <link rel="stylesheet" href="/lbx/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="/lbx/lib/nprogress/nprogress.css?v=0.2.0">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lbx/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/lbx/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/lbx/">&nbsp;<strong>helloOldTime个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/">Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/archives/">Archives</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/categories/">Categories</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/tags/">Tags</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/lbx/img/post.jpg')no-repeat center center;background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                      
+                    </span>
+            
+              <br>
+              <p>星期三, 九月 25日 2019, 12:00 凌晨</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <img src="/lbx/2019/09/25/js-execute/js-execute.jpg" title="This is an example image">
+
+<p>在具体的说执行机制之前，我们先来看一道题？你觉得下面的答案应该是什么呢？</p>
+<pre><code>    console.log(1);
+    setTimeout(function(){
+        console.log(2)
+    });
+    console.log(3);</code></pre><p>对于javaScript的执行机制稍微了解的人，都会知道答案应该是</p>
+<pre><code>       1
+       3
+       2</code></pre><p>如果你不了解也没关系，这篇文章会让你对javaScript的执行机制有个全新的认识～</p>
+<p>   我们要理解javaScript执行机制，需要理解以下几个点</p>
+<h4 id="javaScript的单线程执行机制"><a href="#javaScript的单线程执行机制" class="headerlink" title="javaScript的单线程执行机制"></a>javaScript的单线程执行机制</h4><h4 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h4><h4 id="事件和回调函数"><a href="#事件和回调函数" class="headerlink" title="事件和回调函数"></a>事件和回调函数</h4><h4 id="Event-Loop-事件循环"><a href="#Event-Loop-事件循环" class="headerlink" title="Event Loop (事件循环)"></a>Event Loop (事件循环)</h4><h4 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h4><p>下面我们针对以上几点具体分析</p>
+<h3 id="javaScript的单线程执行机制-1"><a href="#javaScript的单线程执行机制-1" class="headerlink" title="javaScript的单线程执行机制"></a>javaScript的单线程执行机制</h3><p>   在众多的语言中，为了提高CPU的利用率，大多数语言都是多线程的，那么JS为什么是单线程的呢？<br>   单线程即同一时间只能做同一件事情，当有多个任务的时候，只能按照顺序上一个完成了，下一个才能执行，既然单线程这么耗时，为什么JavScript还是使用的单线程的呢。这和它的语言用途有关。<br>   javascript作为一门浏览器脚本语言，主要用途是完成用户交互、操作DOM、，因此决定了它只能是单线程，否则会导致复杂的同步问题。</p>
+<pre><code>  假如javascript有多个线程，我们利用一个线程在某个DOM节点上添加内容，利用另外一个线程操作来删除这个DOM节点，
+  那么浏览器应该已谁为准呢？后端的同学可能会说，我们可以利用锁的概念，但是由于DOM的操作性实在是太复杂了，
+  有太多不确定的因素，所以为了避免复杂性，javascript从
+  诞生起就为单线程。补充一点，为了提高CPU的利用率，HTML5提出了web worker标准，允许javascript脚本创建多个线程，
+  但是子线程完全受主线程控制，且不得操作DOM，因此也并未改变javascript单线程的本质。</code></pre><h3 id="任务队列-1"><a href="#任务队列-1" class="headerlink" title="任务队列"></a>任务队列</h3><p>   单线程就意味着，所有的任务都需要一个接着一个的排队进行执行。只有前一个任务执行完成，后一个任务才能执行，但是如果前一个任务耗时很长，那后一个任务就不得不一直处于等待的状态，<br>   直到前一个任务执行完毕才能执行。一般任务排队的情况有两种：</p>
+<pre><code>    任务的计算量很大，CPU处于忙碌的状态
+    任务需要的东西还没准备好，导致CPU闲置，比如（ajax）</code></pre><p>   针对以上这种情况，javascript的设计者意识到我们完全可以先不去等待，先运行后面已经就绪的任务来提高运行的效率，换句话来说就是把等待中的任务先挂起放在一遍，等得到需要的东西再来执行。这样JS的任务就被分成了同步任务和异步任务。</p>
+<pre><code>  同步任务：在主线程上排队执行的任务、只有前一个任务执行完毕，才能执行后一个任务
+  异步任务：不进入主线程，而进入&quot;任务队列&quot;的任务，只有等&quot;任务队列&quot;通知主线程，某个异步任务可以执行了，
+           该任务才会进入主线程执行
+
+具体的执行过程：
+    （1）所有同步任务都在主线程上执行，会形成一个执行栈
+     (2) 主线程之外，还存在一个&quot;任务队列&quot;，只要异步任务有了运行结果，就在&quot;任务队列&quot;之中放置一个事件。
+    （3）一旦 &quot;执行栈&quot;中所有的同步任务执行完毕，任务系统就会读取&quot;任务队列&quot;，看看里面有哪些事件。哪些对应的异步任务，
+    于是结束等待状态，进入执行栈，开始执行。
+    （4）主线程不断重复上面3步。</code></pre><p>   常见的异步任务有：Ajax操作、定时器（setTimeout/setInterval）、UI事件（load图片/js文件的加载等、resize、scroll、click）</p>
+<img src="/lbx/2019/09/25/js-execute/js-executeimg.jpg" title="This is an example image">
+
+<h3 id="事件和回调函数-1"><a href="#事件和回调函数-1" class="headerlink" title="事件和回调函数"></a>事件和回调函数</h3><p>   “任务队列”是一个事件的队列（也可以理解成消息队列），IO设备完成一项任务，就在”任务队列”中添加<br>   一个事件，表示相关的异步任务可以进入”执行栈”了。主线程读取”任务队列”，就是读取里面有哪些事件。</p>
+<p>   “任务队列”中的事件，除了IO设备的事件以外，还包括一些用户产生的事件（比如 鼠标点击、页面滚动<br>   等）只要指定过回调函数，这些事件发生时就会进入”任务队列”，等待主线程读取。</p>
+<p>   “回调函数”就是那些被主线程挂起来的代码，异步任务必须指定回调函数，当主线程开始执行异步任务，<br>   就是执行对应的回调函数。</p>
+<p>   “任务队列”是一个先进先出的数据结构，排在前面的事件，优先被主线程读取。主线程的读取过程基本是<br>   自动的，只要执行栈一清空，”任务队列”上第一位的事件就自动进入主线程。但是存在特殊情况，”定时器”<br>   主线程会先检查一下执行时间，某些事件只有到了规定的时间，才能返回主线程。</p>
+<h3 id="Event-Loop-事件循环-1"><a href="#Event-Loop-事件循环-1" class="headerlink" title="Event Loop (事件循环)"></a>Event Loop (事件循环)</h3><p>   主线程从”任务队列”中读取事件的过程是不断循环的，所以整个的这种运行机制又叫事件循环。</p>
+ <img src="/lbx/2019/09/25/js-execute/js-event.png" title="This is an example image">
+
+<p>  主线程运行的时候会产生堆和栈（堆和栈JS的2种内存空间），栈中的代码调用各种外部API，它们在”任务队列”中加入各种事件<br>  （click、load、done）。只要栈中的代码执行完毕，主线程就会去读取”任务队列”，依次执行那些事件所对应的回调函数。</p>
+<h3 id="定时器-1"><a href="#定时器-1" class="headerlink" title="定时器"></a>定时器</h3><p>  除了放置异步任务以外，”任务队列”还可以放置定时事件，指定某些代码在多长时间之后执行。</p>
+<p>   setTimeout()和setInterval()用来注册在指定时间后单次或着重复执行函数，内部的运行机制完全一样，区别在于前者指定的代码<br>   是一次性执行的，后者是在指定毫秒间隔里重复执行。</p>
+<pre><code>   setInterval(auto(),1000)     // 1秒调用一次auto </code></pre><p>   需要注意的是：setTimeout定时器是在设置到规定的时间后<br>   才把事件放在任务队列里的，且必须等到当前代码（执行栈）里面的都执行完，主线程才会去执行它指定的回调函数。如果当前主线程<br>   里面的代码耗时很长，那就没有办法保证回调函数会在setTimeout指定的时间执行。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/js">js</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lbx/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/popper.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+<script src="/lbx/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+<script src="/lbx/lib/nprogress/nprogress.min.js?v=0.2.0"></script>
+<script src="/lbx/js/main.js"></script>
+
+  
+    <script src="/lbx/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
+  
+  <script src="/lbx/js/post.js"></script>
+
+
+  <script src="/lbx/lib/prettify/prettify.min.js?v=0.1.0"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lbx/lib/typed/typed.min.js?v=2.0.9"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "你真的了解javaScript的执行机制吗？&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lbx/lib/anchor/anchor.min.js?v=4.2.0"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/lbx/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+</body>
+</html>

@@ -128,9 +128,9 @@
 
     input:checked + .check {
         color:red;
-    }</code></pre><h3 id="3、相邻元素添加边框"><a href="#3、相邻元素添加边框" class="headerlink" title="3、相邻元素添加边框"></a>3、相邻元素添加边框</h3><p>   有时候我们给元素设置border-bottom的时候,并不想给最后一个元素设置</p>
+    }</code></pre><h3 id="3、相邻元素添加边框"><a href="#3、相邻元素添加边框" class="headerlink" title="3、相邻元素添加边框"></a>3、相邻元素添加边框</h3><p>   有时候我们给元素设置border-top的时候,并不想给第一个元素设置</p>
 <pre><code>    li+li {
-        border-bottom: 1px solid red;
+        border-top: 1px solid red;
     }</code></pre><h3 id="4、多列等高"><a href="#4、多列等高" class="headerlink" title="4、多列等高"></a>4、多列等高</h3><pre><code>    display:table;</code></pre><h3 id="5、清除浮动的影响"><a href="#5、清除浮动的影响" class="headerlink" title="5、清除浮动的影响"></a>5、清除浮动的影响</h3><pre><code>    display:flow-root;</code></pre><h3 id="6、input的size属性"><a href="#6、input的size属性" class="headerlink" title="6、input的size属性"></a>6、input的size属性</h3><pre><code>    在input的type类型为text/password时，size的属性值代表input可容纳的字符的个数，除此之外size 属性会告诉用户端其初始宽度，宽度以 ‘px’ 的形式给出</code></pre><h3 id="7、position的粘粘属性"><a href="#7、position的粘粘属性" class="headerlink" title="7、position的粘粘属性"></a>7、position的粘粘属性</h3><p>   position的属性大家常见的应该就是absolute、fixed、static<br>   为大家介绍一个新的属性 sticky</p>
 <pre><code>    position:sticky; 设置sticky的同时给元素一个（top,botton,left,right）即可使用
     使用条件：
