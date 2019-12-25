@@ -89,7 +89,7 @@
                     </span>
             
               <br>
-              <p>星期三, 十二月 25日 2019, 6:01 晚上</p>
+              <p>星期三, 十二月 25日 2019, 6:44 晚上</p>
             
           </div>
         </div>
@@ -108,8 +108,7 @@
       <div class="py-5 z-depth-3 board">
         <div class="post-content mx-auto">
           <div class="markdown-body">
-            <p>title: ‘一道算法题引发的思考’<br>date: 2019-12-09 15:44:39<br>tags: 算法<br>index_img: img/timg.jpg</p>
-<p>一道算法题，引发的思考。作为前端，很少会接触到算法，一般都是后端处理好数据，然后给前端，但是我个人认为算法是不局限于你的技术方向的，学习算法最主要的是掌握它的思想，逻辑。</p>
+            <p>一道算法题，引发的思考。作为前端，很少会接触到算法，一般都是后端处理好数据，然后给前端，但是我个人认为算法是不局限于你的技术方向的，学习算法最主要的是掌握它的思想，逻辑。</p>
 <p>如果给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
 <p> 最简单的想法就是，我们把每两个数都拿出来相加，然后和目标值比较，看是不是我们需要的值，但是这样的话效率并不是很高。代码如下：<br>   var twoSum = function(nums, target) {<br>       for (let i = 0; i &lt; nums.length - 1; i++) { // 每个人<br>         for (let j = i + 1; j &lt; nums.length; j++) { // 都去问其他的人<br>           if (nums[i]+nums[j] === target) {<br>             return [nums[i], nums[j]]<br>           }<br>         }<br>       }<br>     }<br> 很明显我们循环了两次，这样时间复杂度很高。那么如何才能简化一点呢？<br>  方案1：我们其实都是想要得到能和自己相匹配的那个值，那如果我们把我们想要的那个值记录下来，等着别人来的时候，看是否和这个值相等，那这样是不就可以了呢？<br>    var twoSum = function(nums, target) {<br>        let res = {}<br>        for (let i = 0; i &lt; nums.length; i++) { // 记录下来自己想要的<br>          if (res[nums[i]] !== undefined) {<br>            return [nums[i], res[nums[i]]] // 如果存在那就是了<br>          } else {  // 否则<br>            res[target - nums[i]] = nums[i] // 记录需要的值<br>          }<br>        }<br>      }<br>  方案二：既然是寻找，那我们直接看我们需要的那个值在数组里面是否存在不就可以了吗？注意（不能和当前值的下标一致）<br>  var twoSum = function(nums, target) {<br>     for(var i=0;i&lt;nums.length;i++){<br>         var num = target-nums[i];<br>         if(nums.indexOf(num) &gt; -1 &amp;&amp; nums.indexOf(num) !== i){<br>             return [i,nums.indexOf(num)];<br>         }<br>     }<br>  };</p>
 <p> 这道题应该是道很简单的题，基本都能够想到如何解决，但是如何才能最优解呢，我觉得这才是我们需要真正去考虑的，毕竟我们的目的不仅仅是解题，而是如何来从不同的方面考虑问题。</p>
