@@ -4,6 +4,70 @@
   
   
   <entry>
+    <title></title>
+    <link href="/lbx2019/12/25/say/"/>
+    <url>2019/12/25/say/</url>
+    
+    <content type="html"><![CDATA[<p>title: ‘随便聊一聊’<br>date: 2019-12-09 15:44:39<br>tags: js<br>index_img: img/timg.jpg</p><p>好长一段时间都没有更新了，这段时间自己好像在各种瞎忙，唯一让我觉得我还干了点什么就是看完了三本书吧！<br>【被讨厌的勇气】这本听起来很像鸡汤文，但它是告诉你，让你从另外一个角度去看看问题，颠覆了我们之前的因果论，并且这本书是通过对话青年和老者的对话来讲述的，书中的文字页并不想很多哲学文那样，晦涩难懂，也可以说两个人在不断的进行探讨交流。这本书不得不提的一个应该是因果论，我们总是因为以前的某些事去决定以后的一些事情，比如性格，<br>【小狗钱钱1】小狗钱钱1主要讲的就是如何赚钱，赚钱的方式和方法有很多，主要是需要你自己去寻找，去发现，其实很多机会都在身边，书中的亚瑟时候通过给别人照看小狗赚钱，她是基于自己会什么有什么能力能够做什么，去寻找可以赚钱的方法，那作为成年人的我们肯定会比她掌握更多的技能，我们应该利用自己的能力去赚更多的钱，并且成年人有更多的选择行，也可以去培养自己某一方面的能力，也要有能力来投资自己，或许这项能力短期内给你带来不了太大的收益，但是要相信长期积累下来也将会是一笔财富。<br>【小狗钱钱2】人不能光会赚钱，这样和工具有什么区别，赚钱只不过是人能力的一种象征，而还有很多内在的东西。就比如甜甜圈，如果没有了外面那一层，里面的不过也是空气，而如果没有了中间这个圈，那也就是没有了内在。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/lbx2019/12/25/threeSum/"/>
+    <url>2019/12/25/threeSum/</url>
+    
+    <content type="html"><![CDATA[<p>title: ‘一道算法题引发的思考’<br>date: 2019-12-09 15:44:39<br>tags: 算法<br>index_img: img/timg.jpg</p><p>一道算法题，引发的思考。作为前端，很少会接触到算法，一般都是后端处理好数据，然后给前端，但是我个人认为算法是不局限于你的技术方向的，学习算法最主要的是掌握它的思想，逻辑。</p><p>如果给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p><p> 最简单的想法就是，我们把每两个数都拿出来相加，然后和目标值比较，看是不是我们需要的值，但是这样的话效率并不是很高。代码如下：<br>   var twoSum = function(nums, target) {<br>       for (let i = 0; i &lt; nums.length - 1; i++) { // 每个人<br>         for (let j = i + 1; j &lt; nums.length; j++) { // 都去问其他的人<br>           if (nums[i]+nums[j] === target) {<br>             return [nums[i], nums[j]]<br>           }<br>         }<br>       }<br>     }<br> 很明显我们循环了两次，这样时间复杂度很高。那么如何才能简化一点呢？<br>  方案1：我们其实都是想要得到能和自己相匹配的那个值，那如果我们把我们想要的那个值记录下来，等着别人来的时候，看是否和这个值相等，那这样是不就可以了呢？<br>    var twoSum = function(nums, target) {<br>        let res = {}<br>        for (let i = 0; i &lt; nums.length; i++) { // 记录下来自己想要的<br>          if (res[nums[i]] !== undefined) {<br>            return [nums[i], res[nums[i]]] // 如果存在那就是了<br>          } else {  // 否则<br>            res[target - nums[i]] = nums[i] // 记录需要的值<br>          }<br>        }<br>      }<br>  方案二：既然是寻找，那我们直接看我们需要的那个值在数组里面是否存在不就可以了吗？注意（不能和当前值的下标一致）<br>  var twoSum = function(nums, target) {<br>     for(var i=0;i&lt;nums.length;i++){<br>         var num = target-nums[i];<br>         if(nums.indexOf(num) &gt; -1 &amp;&amp; nums.indexOf(num) !== i){<br>             return [i,nums.indexOf(num)];<br>         }<br>     }<br>  };</p><p> 这道题应该是道很简单的题，基本都能够想到如何解决，但是如何才能最优解呢，我觉得这才是我们需要真正去考虑的，毕竟我们的目的不仅仅是解题，而是如何来从不同的方面考虑问题。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>搜索资源网站</title>
+    <link href="/lbx2019/12/25/search/"/>
+    <url>2019/12/25/search/</url>
+    
+    <content type="html"><![CDATA[<img src="/lbx/2019/12/25/search/search.jpeg" title="This is an example image"><p>学习技术过程我们经常需要使用搜索引擎来检索资料，国内常用的也就是某度了。</p><p>当然有条件的话，搜索引擎首先还是推荐使用 Google，如果没办法使用，可以使用以下几个作为备用：</p><p>Bing<br>Bing 国际版：<a href="https://cn.bing.com/" target="_blank" rel="noopener">https://cn.bing.com/</a></p><p>比某度好用，之前还被停用了几天，最近可以了。</p><p>DuckDuckGo<br>DuckDuckGo：<a href="https://duckduckgo.com/" target="_blank" rel="noopener">https://duckduckgo.com/</a></p><p>从官网的介绍来看这个搜索引擎不收集用户信息，而且没有广告。</p><p>Stack Overflow<br>Stack Overflow：<a href="https://stackoverflow.com/" target="_blank" rel="noopener">https://stackoverflow.com/</a></p><p>我们如果常用 Google，很多技术问题的答案就在这个网站上，如果你无法使用 Google 可以在这个网站上直接检索就好了。</p><p>Gitlogs<br>Gitlogs：<a href="https://www.gitlogs.com/" target="_blank" rel="noopener">https://www.gitlogs.com/</a></p><p>Gitlogs 是专门针对 GitHub 项目的搜索引擎，我们通过他可以快速找到想要项目。</p><p>jiumo search<br>文档搜索引擎 jiumo search 鸠摩搜书：<a href="https://www.jiumodiary.com/" target="_blank" rel="noopener">https://www.jiumodiary.com/</a></p><p>可以用来找一些技术文档手册，很多在百度网盘里。</p><p>Ebooke<br>Ebooke：<a href="https://ebookee.org/" target="_blank" rel="noopener">https://ebookee.org/</a></p><p>Ebookee 是一个基于互联网并提供免费电子图书下载的搜索引擎网站。</p><p>Iconfinder<br>图标搜索：<a href="https://www.iconfinder.com/" target="_blank" rel="noopener">https://www.iconfinder.com/</a></p><p>用来查找 logo 图片。</p><p>TinEye<br>TinEye：<a href="https://www.tineye.com" target="_blank" rel="noopener">https://www.tineye.com</a></p><p>用图片来检索图片，我们可以上传图片或输入图片的 URL 来检索。</p><p>SemanticScholar<br>SemanticScholar：<a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">https://www.semanticscholar.org/</a></p><p>SemanticScholar 是一个免费学术搜索引擎，其检索结果来自于期刊、学术会议资料或者是学术机构的文献。</p><p>LibreStock<br>LibreStock：<a href="https://librestock.com/" target="_blank" rel="noopener">https://librestock.com/</a></p><p>LibreStock 上可以检索一些优质的高清图片。</p><p>CC Search<br>CC Search：<a href="https://ccsearch.creativecommons.org/" target="_blank" rel="noopener">https://ccsearch.creativecommons.org/</a></p><p>CC Search 上搜索到的图片资源都是无版权的，我们可以免费的使用。</p><p>Pexels<br>Pexels：<a href="https://www.pexels.com/" target="_blank" rel="noopener">https://www.pexels.com/</a></p><p>高质量的图片网站，可以免费使用。</p><p>Unsplash<br>Unsplash：<a href="https://unsplash.com/" target="_blank" rel="noopener">https://unsplash.com/</a></p><p>免费高清素材网站。</p><p>The App Store<br>The App Store：<a href="https://theappstore.org/" target="_blank" rel="noopener">https://theappstore.org/</a></p><p>The App Store 是一个针对苹果手机、iPad、Mac 设备的应用搜索工具。</p><p>工具类<br>图片相关工具<br>TinyPNG：<a href="https://tinypng.com/" target="_blank" rel="noopener">https://tinypng.com/</a></p><p>免费的在线图片压缩工具，压缩率高，无损画质，直接拖拽使用，很方便。</p><p>picdiet：<a href="https://www.picdiet.com/zh-cn" target="_blank" rel="noopener">https://www.picdiet.com/zh-cn</a></p><p>独特且强悍的JavaScript 算法，能极速压缩 80% 的图片大小，而不损害其质量。</p><p>SmartResize：</p><p><a href="https://www.smartresize.com/zh-cn" target="_blank" rel="noopener">https://www.smartresize.com/zh-cn</a></p><p>这个工具基于 javascript+HTML5 编写而成的，是一个批量裁剪缩放图片的神器！</p><p>正则表达式相关工具<br>以下两个工具以图形的方式来展示正则表达式，更易于理解：</p><p><a href="https://regexr.com/" target="_blank" rel="noopener">https://regexr.com/</a></p><p><a href="https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24" target="_blank" rel="noopener">https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24</a></p><p>文件转换转换工具<br>以下资源支持各种格式（PDF、图片、Word）相互转换。</p><p><a href="https://smallpdf.com/cn" target="_blank" rel="noopener">https://smallpdf.com/cn</a></p><p><a href="https://convertio.co/zh/" target="_blank" rel="noopener">https://convertio.co/zh/</a></p><p><a href="https://www.online-convert.com/" target="_blank" rel="noopener">https://www.online-convert.com/</a></p><p><a href="https://www.pdftoword.com/" target="_blank" rel="noopener">https://www.pdftoword.com/</a></p><p><a href="https://tools.pdf24.org/zh/" target="_blank" rel="noopener">https://tools.pdf24.org/zh/</a></p><p><a href="https://cn.office-converter.com/" target="_blank" rel="noopener">https://cn.office-converter.com/</a></p><p>在线编译器<br>包含前后端（php、java、c等）都可以在线运行测试</p><p><a href="https://rextester.com/" target="_blank" rel="noopener">https://rextester.com/</a></p><p><a href="https://www.onlinegdb.com/" target="_blank" rel="noopener">https://www.onlinegdb.com/</a></p><p><a href="https://c.runoob.com/" target="_blank" rel="noopener">https://c.runoob.com/</a></p><p>HTML、CSS、JS、设计类的工具<br>JSFiddle: <a href="https://jsfiddle.net/" target="_blank" rel="noopener">https://jsfiddle.net/</a></p><p>CodePen: <a href="https://codepen.io/" target="_blank" rel="noopener">https://codepen.io/</a></p><p>Runoob: <a href="https://c.runoob.com/front-end/61" target="_blank" rel="noopener">https://c.runoob.com/front-end/61</a></p><p>JSON 解析器: <a href="https://c.runoob.com/front-end/53" target="_blank" rel="noopener">https://c.runoob.com/front-end/53</a></p><p>在线 PS: <a href="http://www.kantu.com/" target="_blank" rel="noopener">http://www.kantu.com/</a></p><p>表格转换工具: <a href="https://tableconvert.com/" target="_blank" rel="noopener">https://tableconvert.com/</a></p><p>支持的 Markdown、HTML table、CSV 和 Excel 的相互转换。</p><p>DesignCap: <a href="https://www.designcap.com/" target="_blank" rel="noopener">https://www.designcap.com/</a></p><p>在线设计海报，内置众多模板及素材。</p><p>思维导图工具<br>推荐几款绘图工具：</p><p>Xmind：<a href="https://www.xmind.cn/" target="_blank" rel="noopener">https://www.xmind.cn/</a></p><p>跨平台、跨终端，拥有全功能的思维导图软件。</p><p>ProcessOn：<a href="https://www.processon.com/" target="_blank" rel="noopener">https://www.processon.com/</a></p><p>免费在线作图，实时协作，支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等。</p><p>MindMaster：<a href="https://www.edrawsoft.cn/mindmaster/" target="_blank" rel="noopener">https://www.edrawsoft.cn/mindmaster/</a></p><p>多平台思维导图软件，可用于Windows，Mac和Linux等桌面环境，也可以在线使用或在苹果，安卓等移动端上使用。</p><p>MindMeister：<a href="https://www.mindmeister.com/zh" target="_blank" rel="noopener">https://www.mindmeister.com/zh</a></p><p>在线思维导图工具，已有超过1000万个用户。</p><p>百度脑图：<a href="http://naotu.baidu.com/" target="_blank" rel="noopener">http://naotu.baidu.com/</a> 简洁的在线思维导图工具</p><p>Gliffy：<a href="https://www.gliffy.com/" target="_blank" rel="noopener">https://www.gliffy.com/</a></p><p>我们可以在 Chrome 浏览器上安装 gliffy 插件。</p><p>可以在线创建流程图、UML图、线框图、BPNM、组织架构图等。</p><p>文档笔记平台<br>推荐几个常用的国内外云笔记平台，比较常用的应该是印象、有道、石墨，有一些国外的访问速度比较慢，影响体验。</p><p>现在用云笔记的人应该蛮多的，可以总结归纳自己的一些知识储备或者相关的业务资料，加上他们自带的跨平台特性，用起来还是很方便的。</p><p>印象笔记：<a href="https://www.yinxiang.com/" target="_blank" rel="noopener">https://www.yinxiang.com/</a></p><p>有道笔记：<a href="https://note.youdao.com/" target="_blank" rel="noopener">https://note.youdao.com/</a></p><p>OneNote：<a href="https://www.onenote.com/" target="_blank" rel="noopener">https://www.onenote.com/</a></p><p>幕布：<a href="https://mubu.com/" target="_blank" rel="noopener">https://mubu.com/</a></p><p>为知笔记：<a href="https://www.wiz.cn/" target="_blank" rel="noopener">https://www.wiz.cn/</a></p><p>石墨文档：<a href="https://shimo.im/" target="_blank" rel="noopener">https://shimo.im/</a></p><p>Google keep：<a href="https://keep.google.com/" target="_blank" rel="noopener">https://keep.google.com/</a></p><p>Simplenote：<a href="https://simplenote.com/" target="_blank" rel="noopener">https://simplenote.com/</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>常见的面试题</title>
+    <link href="/lbx2019/10/07/Interview/"/>
+    <url>2019/10/07/Interview/</url>
+    
+    <content type="html"><![CDATA[<img src="/lbx/2019/10/07/Interview/timg.jpg" title="This is an example image"><p>2019这一年马上就要过去了，你收获了什么吗？年初立下的flag都实现了吗？时间不等人啊，前端技术日复一日的更新换代，我们需要跟上才不至于被淘汰。当然有很多同学也会觉得自己学不动～（哎，太难了～）<br>因此我整理了一些面试常问的知识点，不会很多，简单易用，每天学几道，积累一点,进步也会很大的奥～本文将会持续不断更新～</p><p>1、CSS实现三角形</p><p>   把你要设置的那一条边设置有颜色的，其余的设置为透明</p><pre><code>.box{     width: 0;     height: 0;     border-top: 50px solid transparent;     border-right: 50px solid transparent;     border-bottom: 50px solid transparent;     border-left: 50px solid black;}</code></pre><p>   这个问题考察的就是CSS的基础知识，相对来说其实很简单。</p><p>2、数组乱序</p><p> 数组乱序故名思议就是把一个数组打乱。</p><pre><code>function shuffle(arr) {      for (let i=arr.length-1; i&gt;=0; i--) {          let rIndex = Math.floor(Math.random()*(i+1));          // 打印交换值          // console.log(i, rIndex);          let temp = arr[rIndex];          arr[rIndex] = arr[i];          arr[i] = temp;      }      return arr;  }</code></pre><p>3、for in 和 for of 区别</p><p>   1、在遍历对象的时候最好用for in 遍历数组的时候用for of<br>   2、for in 循环出的是key for of循环出的是value<br>   3、⚠️for of 是ES6新引入的属性，弥补了for in 的不足<br>   4、for of 不能循环普通对象，需要和Object.keys()搭配使用</p><p>  如果感兴趣想要了解为什么有这些不同，可以看我的这篇文章 for of 和 for in 的区别</p><p>4、Promise接收的函数中resolve()后的代码是否会执行？</p><p>   我们看一个列子</p><pre><code>var promise = new Promise(function(resolve, reject){    setTimeout(function(){        resolve(1);        console.log(2);    }, 1000);    console.log(3);});promise.then(function(data){    console.log(data);});</code></pre><p>   你觉得它会返回什么呢？</p><pre><code>321</code></pre><p>  因为resolve相当于一个异步调用，属于异步触发，即状态变化后不会马上执行事件的响应函数，而是等到当前任务队列为空的时候才会执行，所以2会在1之前打印出来.<br>  综合以上Promise构造函数接收的函数中，调用resolve()之后的代码仍然会执行，它在被new的时候是同步执行的。</p><p>5、监听一段时间内用户对我方网页的操作</p><p>   用户有没有操作页面，我们可以从一段时间内用户有没有触发事件去考虑。比如有没有滚动、点击、按键等、代码示例：</p><pre><code> window.onload = function (){   (function($){     funObj = {       timeUserFun:&#39;timeUserFun&#39;,     }     $[funObj.timeUserFun] = function(time){       var time = time || 2;       var userTime = time*60;       var objTime = {         init:0,         time:function(){           objTime.init += 1;           if(objTime.init == userTime){             console.log(111) // 用户到达未操作事件 做一些处理           }         },         eventFun:function(){           clearInterval(testUser);           objTime.init = 0;           testUser = setInterval(objTime.time,1000);         }       }       var testUser = setInterval(objTime.time,1000);       var body = document.querySelector(&#39;html&#39;);       body.addEventListener(&quot;click&quot;,objTime.eventFun);       body.addEventListener(&quot;keydown&quot;,objTime.eventFun);       body.addEventListener(&quot;mousemove&quot;,objTime.eventFun);       body.addEventListener(&quot;mousewheel&quot;,objTime.eventFun);     }   })(window)//   直接调用 参数代表分钟数,可以有一位小数;    timeUserFun(0.1); }</code></pre><p>6、图片懒加载和预加载</p><p>   懒加载<br>   懒加载就是先将页面内的所有图片的真实地址放在一个属性(data-url)里, 并将src先设置为1px的小图片，当触发某些条件(图片进入视野)时，再将图片的src换成真实地址。使页面加载速度快、可以减轻服务器的压力，节约了流量，用户体验好。</p><p>   预加载<br>   提前加载图片，当用户需要查看时可直接从本地缓存中渲染，可以使用css或js实现。</p><p>   如果想了解更多，可以看看这篇文章。如何处理图片懒加载和预加载</p><p>7、css两列布局，右列定宽，左列自适应</p><p>   这个问题相对来说应该很简单，很多人都能回答出来，但是我认为这个更考验的是你能想出多少种方法。在这里简单的说一下：<br>   1、使用absolute属性实现，注意点：固定宽的列的高度 &gt; 自适应宽度列的高度<br>   2、通过设置float属性（使纵向排列的块级元素，横向排列）及margin属性（设置两列之间的宽度）<br>   3、使用Flex布局<br>   4、利用BFC不与浮动元素重叠的特性</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>你真的了解javaScript的执行机制吗？</title>
     <link href="/lbx2019/09/25/js-execute/"/>
     <url>2019/09/25/js-execute/</url>

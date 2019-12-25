@@ -14,7 +14,7 @@
   <meta name="description" content="这里包含了前端、算法、mySql、Linux等知识点">
   <meta name="author" content="liubingxue">
   <meta name="keywords" content="JS,前端,算法,mySql">
-  <title>归档 ~ helloOldTime个人博客</title>
+  <title>helloOldTime个人博客</title>
   <link rel="stylesheet" href="/lbx/lib/font-awesome/css/all.min.css?v=5.7.2">
   <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
   <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
@@ -31,7 +31,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -80,13 +80,16 @@
 
 </nav>
     <div class="view intro-2"
-         style="background: url('/lbx/img/archive.jpg')no-repeat center center;background-size: cover;">
+         style="background: url('/lbx/img/post.jpg')no-repeat center center;background-size: cover;">
       <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
           <div class="container text-center white-text wow fadeInUp">
                     <span class="h2" id="subtitle">
                       
                     </span>
+            
+              <br>
+              <p>星期三, 十二月 25日 2019, 6:01 晚上</p>
             
           </div>
         </div>
@@ -96,76 +99,58 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3 board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 8 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/lbx/2019/12/25/say/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <span style="float: right;">12-25</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/12/25/threeSum/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <span style="float: right;">12-25</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/12/25/search/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">搜索资源网站</span>
-      <span style="float: right;">12-25</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/10/07/Interview/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">常见的面试题</span>
-      <span style="float: right;">10-07</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/09/25/js-execute/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">你真的了解javaScript的执行机制吗？</span>
-      <span style="float: right;">09-25</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/09/23/css/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">你应该知道的简单易用的CSS技巧</span>
-      <span style="float: right;">09-23</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/09/22/array-common/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">两个数组的交集 你能想出多少种方法</span>
-      <span style="float: right;">09-22</span>
-    </a>
-  
-    
-    <a href="/lbx/2019/09/22/jsType/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JS神奇的类型转换</span>
-      <span style="float: right;">09-22</span>
-    </a>
-  
-</div>
 
-              </div>
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <p>title: ‘一道算法题引发的思考’<br>date: 2019-12-09 15:44:39<br>tags: 算法<br>index_img: img/timg.jpg</p>
+<p>一道算法题，引发的思考。作为前端，很少会接触到算法，一般都是后端处理好数据，然后给前端，但是我个人认为算法是不局限于你的技术方向的，学习算法最主要的是掌握它的思想，逻辑。</p>
+<p>如果给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p> 最简单的想法就是，我们把每两个数都拿出来相加，然后和目标值比较，看是不是我们需要的值，但是这样的话效率并不是很高。代码如下：<br>   var twoSum = function(nums, target) {<br>       for (let i = 0; i &lt; nums.length - 1; i++) { // 每个人<br>         for (let j = i + 1; j &lt; nums.length; j++) { // 都去问其他的人<br>           if (nums[i]+nums[j] === target) {<br>             return [nums[i], nums[j]]<br>           }<br>         }<br>       }<br>     }<br> 很明显我们循环了两次，这样时间复杂度很高。那么如何才能简化一点呢？<br>  方案1：我们其实都是想要得到能和自己相匹配的那个值，那如果我们把我们想要的那个值记录下来，等着别人来的时候，看是否和这个值相等，那这样是不就可以了呢？<br>    var twoSum = function(nums, target) {<br>        let res = {}<br>        for (let i = 0; i &lt; nums.length; i++) { // 记录下来自己想要的<br>          if (res[nums[i]] !== undefined) {<br>            return [nums[i], res[nums[i]]] // 如果存在那就是了<br>          } else {  // 否则<br>            res[target - nums[i]] = nums[i] // 记录需要的值<br>          }<br>        }<br>      }<br>  方案二：既然是寻找，那我们直接看我们需要的那个值在数组里面是否存在不就可以了吗？注意（不能和当前值的下标一致）<br>  var twoSum = function(nums, target) {<br>     for(var i=0;i&lt;nums.length;i++){<br>         var num = target-nums[i];<br>         if(nums.indexOf(num) &gt; -1 &amp;&amp; nums.indexOf(num) !== i){<br>             return [i,nums.indexOf(num)];<br>         }<br>     }<br>  };</p>
+<p> 这道题应该是道很简单的题，基本都能够想到如何解决，但是如何才能最优解呢，我觉得这才是我们需要真正去考虑的，毕竟我们的目的不仅仅是解题，而是如何来从不同的方面考虑问题。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -211,6 +196,11 @@
 <script src="/lbx/lib/nprogress/nprogress.min.js?v=0.2.0"></script>
 <script src="/lbx/js/main.js"></script>
 
+  
+    <script src="/lbx/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
+  
+  <script src="/lbx/js/post.js"></script>
+
 
   <script src="/lbx/lib/prettify/prettify.min.js?v=0.1.0"></script>
   <script>
@@ -226,7 +216,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

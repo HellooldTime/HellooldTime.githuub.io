@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/lbx/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/lbx/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="这里包含了前端、算法、mySql、Linux等知识点">
+  <meta name="author" content="liubingxue">
+  <meta name="keywords" content="JS,前端,算法,mySql">
+  <title>常见的面试题 ~ helloOldTime个人博客</title>
+  <link rel="stylesheet" href="/lbx/lib/font-awesome/css/all.min.css?v=5.7.2">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/bootstrap.min.css?v=4.3.1">
+  <link rel="stylesheet" href="/lbx/lib/mdbootstrap/css/mdb.min.css?v=4.8.7">
+  <link rel="stylesheet" href="/lbx/lib/github-markdown/github-markdown.min.css">
+  <link rel="stylesheet" href="/lbx/lib/nprogress/nprogress.css?v=0.2.0">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  
+    <link rel="stylesheet" href="/lbx/lib/prettify/tomorrow-night-eighties.min.css">
+  
+  <link rel="stylesheet" href="/lbx/css/main.css">
+
+  
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/lbx/">&nbsp;<strong>helloOldTime个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/">Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/archives/">Archives</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/categories/">Categories</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/tags/">Tags</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/lbx/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+    <div class="view intro-2"
+         style="background: url('/lbx/img/post.jpg')no-repeat center center;background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text wow fadeInUp">
+                    <span class="h2" id="subtitle">
+                      
+                    </span>
+            
+              <br>
+              <p>星期一, 十月 7日 2019, 3:44 下午</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3 board">
+        <div class="post-content mx-auto">
+          <div class="markdown-body">
+            <img src="/lbx/2019/10/07/Interview/timg.jpg" title="This is an example image">
+
+<p>2019这一年马上就要过去了，你收获了什么吗？年初立下的flag都实现了吗？时间不等人啊，前端技术日复一日的更新换代，我们需要跟上才不至于被淘汰。当然有很多同学也会觉得自己学不动～（哎，太难了～）<br>因此我整理了一些面试常问的知识点，不会很多，简单易用，每天学几道，积累一点,进步也会很大的奥～本文将会持续不断更新～</p>
+<p>1、CSS实现三角形</p>
+<p>   把你要设置的那一条边设置有颜色的，其余的设置为透明</p>
+<pre><code>.box{
+     width: 0;
+     height: 0;
+     border-top: 50px solid transparent;
+     border-right: 50px solid transparent;
+     border-bottom: 50px solid transparent;
+     border-left: 50px solid black;
+}</code></pre><p>   这个问题考察的就是CSS的基础知识，相对来说其实很简单。</p>
+<p>2、数组乱序</p>
+<p> 数组乱序故名思议就是把一个数组打乱。</p>
+<pre><code>function shuffle(arr) {
+      for (let i=arr.length-1; i&gt;=0; i--) {
+          let rIndex = Math.floor(Math.random()*(i+1));
+          // 打印交换值
+          // console.log(i, rIndex);
+          let temp = arr[rIndex];
+          arr[rIndex] = arr[i];
+          arr[i] = temp;
+      }
+      return arr;
+  }</code></pre><p>3、for in 和 for of 区别</p>
+<p>   1、在遍历对象的时候最好用for in 遍历数组的时候用for of<br>   2、for in 循环出的是key for of循环出的是value<br>   3、⚠️for of 是ES6新引入的属性，弥补了for in 的不足<br>   4、for of 不能循环普通对象，需要和Object.keys()搭配使用</p>
+<p>  如果感兴趣想要了解为什么有这些不同，可以看我的这篇文章 for of 和 for in 的区别</p>
+<p>4、Promise接收的函数中resolve()后的代码是否会执行？</p>
+<p>   我们看一个列子</p>
+<pre><code>var promise = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        resolve(1);
+        console.log(2);
+    }, 1000);
+    console.log(3);
+});
+promise.then(function(data){
+    console.log(data);
+});</code></pre><p>   你觉得它会返回什么呢？</p>
+<pre><code>3
+2
+1</code></pre><p>  因为resolve相当于一个异步调用，属于异步触发，即状态变化后不会马上执行事件的响应函数，而是等到当前任务队列为空的时候才会执行，所以2会在1之前打印出来.<br>  综合以上Promise构造函数接收的函数中，调用resolve()之后的代码仍然会执行，它在被new的时候是同步执行的。</p>
+<p>5、监听一段时间内用户对我方网页的操作</p>
+<p>   用户有没有操作页面，我们可以从一段时间内用户有没有触发事件去考虑。比如有没有滚动、点击、按键等、代码示例：</p>
+<pre><code> window.onload = function (){
+
+   (function($){
+     funObj = {
+       timeUserFun:&#39;timeUserFun&#39;,
+     }
+     $[funObj.timeUserFun] = function(time){
+       var time = time || 2;
+       var userTime = time*60;
+       var objTime = {
+         init:0,
+         time:function(){
+           objTime.init += 1;
+           if(objTime.init == userTime){
+             console.log(111) // 用户到达未操作事件 做一些处理
+           }
+         },
+         eventFun:function(){
+           clearInterval(testUser);
+           objTime.init = 0;
+           testUser = setInterval(objTime.time,1000);
+         }
+       }
+
+       var testUser = setInterval(objTime.time,1000);
+
+       var body = document.querySelector(&#39;html&#39;);
+       body.addEventListener(&quot;click&quot;,objTime.eventFun);
+       body.addEventListener(&quot;keydown&quot;,objTime.eventFun);
+       body.addEventListener(&quot;mousemove&quot;,objTime.eventFun);
+       body.addEventListener(&quot;mousewheel&quot;,objTime.eventFun);
+     }
+   })(window)
+
+
+//   直接调用 参数代表分钟数,可以有一位小数;
+    timeUserFun(0.1);
+ }</code></pre><p>6、图片懒加载和预加载</p>
+<p>   懒加载<br>   懒加载就是先将页面内的所有图片的真实地址放在一个属性(data-url)里, 并将src先设置为1px的小图片，当触发某些条件(图片进入视野)时，再将图片的src换成真实地址。使页面加载速度快、可以减轻服务器的压力，节约了流量，用户体验好。</p>
+<p>   预加载<br>   提前加载图片，当用户需要查看时可直接从本地缓存中渲染，可以使用css或js实现。</p>
+<p>   如果想了解更多，可以看看这篇文章。如何处理图片懒加载和预加载</p>
+<p>7、css两列布局，右列定宽，左列自适应</p>
+<p>   这个问题相对来说应该很简单，很多人都能回答出来，但是我认为这个更考验的是你能想出多少种方法。在这里简单的说一下：<br>   1、使用absolute属性实现，注意点：固定宽的列的高度 &gt; 自适应宽度列的高度<br>   2、通过设置float属性（使纵向排列的块级元素，横向排列）及margin属性（设置两列之间的宽度）<br>   3、使用Flex布局<br>   4、利用BFC不与浮动元素重叠的特性</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            
+            <p>
+              <i class="iconfont icon-tag"></i>
+              
+                <a class="hover-with-bg" href="/tags/js">js</a>
+              
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lbx/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/popper.min.js"></script>
+<script src="/lbx/lib/mdbootstrap/js/bootstrap.min.js?v=4.3.1"></script>
+<script src="/lbx/lib/mdbootstrap/js/mdb.min.js?v=4.8.7"></script>
+<script src="/lbx/lib/nprogress/nprogress.min.js?v=0.2.0"></script>
+<script src="/lbx/js/main.js"></script>
+
+  
+    <script src="/lbx/lib/tocbot/tocbot.min.js?v=4.7.0"></script>
+  
+  <script src="/lbx/js/post.js"></script>
+
+
+  <script src="/lbx/lib/prettify/prettify.min.js?v=0.1.0"></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="/lbx/lib/typed/typed.min.js?v=2.0.9"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "常见的面试题&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="/lbx/lib/anchor/anchor.min.js?v=4.2.0"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/lbx/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+</body>
+</html>
